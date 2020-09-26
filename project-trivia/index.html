@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Trivia</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/styles2.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <style>
+
+      #progress-bar {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: aliceblue;
+      }
+
+      .card-body,
+      .badge {
+        z-index: 1;
+      }
+
+    </style>
+  </head>
+  <body>
+      <div class="container">
+          <main class="d-flex">
+            <span class="badge badge-pill badge-primary"></span>
+            <form class="col-6 m-auto">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Número de preguntas</label>
+                <input type="number" class="form-control" id="nQuestions" value="10" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Seleciona categoría</label>
+                <select class="form-control" id="selectCategory">
+                    <option value="any">Any category</option>
+                </select>
+              </div>
+              <button class="btn btn-primary col-9 d-block m-auto" type="submit">Submit form</button>
+            </form>
+          </main>
+      </div>
+
+      <template id="card-template">
+        <div class="card col-xl-6 col-sm-12"> 
+          <progress id="progress-bar" value="10" max="10"></progress>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <div class="row buttons">
+              <button type="button" class="btn btn-primary btn-question"></button>
+              <button type="button" class="btn btn-primary btn-question"></button>
+              <button type="button" class="btn btn-primary btn-question"></button>
+              <button type="button" class="btn btn-primary btn-question"></button>
+            </div>
+          </div>
+        </div>
+      </template> 
+      <script>
+          
+          const d = document;
+          const $contQuestions = d.querySelector(".badge-pill");
+          let $form = d.querySelector("form");
+          let $selectCategory = d.getElementById("selectCategory");
+          let $nQuestions = d.getElementById("nQuestions");
+          let totalQuestions = $nQuestions.value;
+          let url;
+          let $main = d.querySelector("main");
+          let questionsRight = 0;
+          let questionsWrong = 0;
+          let currentQuestion = 1;
+          let respuestasAnswer = 0;
+          const $template = d.getElementById("card-template").content;
+          const $fragment = d.createDocumentFragment();
+          let timeLeft = 11;
+
+          d.addEventListener("DOMContentLoaded", e => {
+          
+            fetch("https://opentdb.com/api_category.php")
+            .then(res => res.json())
+            .then(res => {
+                res.trivia_categories.forEach(e => {
+                    const $option = d.createElement("option");
+                    $option.value = e.id; 
+                    $option.textContent = e.name;
+
+                    $selectCategory.appendChild($option);
+                });
+                
+            })
+          })
+
+          d.addEventListener("submit", e => {
+            
+            e.preventDefault();
+            $form.classList.add("none");
+
+            if($selectCategory.value === "any") {
+                url = `https://opentdb.com/api.php?amount=${$nQuestions.value}`;
+            } else {
+                url = `https://opentdb.com/api.php?amount=${$nQuestions.value}&category=${$selectCategory.value}`;
+            }
+
+            $contQuestions.textContent = `${currentQuestion}/${$nQuestions.value}`;
+
+            fetch(url)
+            .then(res => res.json())
+            .then(res => {
+              debugger
+              const buttons = $template.querySelectorAll("button");
+    
+                res.results.forEach(e => {
+                  let answers = [];
+                  answers.push(e.correct_answer);
+                  answers.push(...e.incorrect_answers);
+
+                  const answerSort = (a, b) => {
+                    return 0.5 - Math.random();
+                  } 
+
+                  answerAleatory = answers.sort(answerSort);
+
+                  $template.querySelector(".card-title").textContent = e.category;
+                  $template.querySelector(".card-text").textContent = e.question;
+
+                  for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].textContent = answerAleatory[i]
+                    if(answerAleatory[i] === e.correct_answer) {
+                      buttons[i].dataset.question = "true";
+                    } else {
+                      buttons[i].dataset.question = "false";
+                    }
+                  }
+
+                  $template.querySelectorAll(".btn-question").forEach(e => {
+                    
+                    if(e.textContent === "") {
+                      e.classList.add("none");
+                    } else {
+                      e.classList.remove("none");
+                    }
+                  })
+
+                  $clone = d.importNode($template, true);
+                  
+                  $fragment.appendChild($clone);
+                  
+                });
+                $main.appendChild($fragment);
+
+                $cards = d.querySelectorAll(".card");
+                $cards[0].classList.add("current");
+
+                for(let i = 1; i < $cards.length; i++) {
+                  $cards[i].classList.add("none");
+                }
+                debugger
+            let $progressBar = d.getElementById("progress-bar");
+               
+            const timer = setInterval (() => {
+            $progressBar.value = --timeLeft;
+
+            if(timeLeft <= 0) {
+              
+              d.querySelector(".current").nextElementSibling.classList.remove("none");
+              d.querySelector(".current").nextElementSibling.classList.add("current");
+              d.querySelectorAll(".current")[0].classList.remove("current");
+              d.querySelector(".current").previousElementSibling.classList.add("none")
+              $contQuestions.textContent = `${++currentQuestion}/${$nQuestions.value}`;
+              clearInterval(timer);
+            }
+            
+          },1000);
+         
+            })
+          })
+
+          d.addEventListener("click", e => {
+            
+            if(e.target.matches(".btn-question") || e.target.matches(".btn-question *")) {
+              (e.target.dataset.question === "true" || e.target.closest(".btn-question").dataset.question === "true")
+              ? console.log(`Respues acertadas ${++questionsRight}`)
+              : console.log(`Respues falladas ${++questionsWrong}`);
+
+              if(!e.target.closest(".card").nextElementSibling) {
+                e.target.closest(".card").classList.add("none");
+                $contQuestions.textContent = `Has acertado ${questionsRight} respuestas`;
+                
+              } else {
+                
+                e.target.closest(".card").classList.add("none");
+                e.target.closest(".card").nextElementSibling.classList.remove("none");
+                e.target.closest(".card").nextElementSibling.classList.add("current");
+                $contQuestions.textContent = `${++currentQuestion}/${$nQuestions.value}`;
+                
+                let $progressBar = d.getElementById("progress-bar");
+
+                let timeLeft = 11;
+
+                const timer = setInterval (() => {
+                $progressBar.value = --timeLeft;
+
+                if(timeLeft <= 0) {
+                  
+                  d.querySelector(".current").nextElementSibling.classList.remove("none");
+                  d.querySelector(".current").nextElementSibling.classList.add("current");
+                  d.querySelectorAll(".current")[0].classList.remove("current");
+                  d.querySelector(".current").previousElementSibling.classList.add("none")
+                  $contQuestions.textContent = `${++currentQuestion}/${$nQuestions.value}`;
+                  clearInterval(timer);
+                }
+                
+              },1000);
+
+              }
+              
+            }
+          })
+      </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
