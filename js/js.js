@@ -1,4 +1,5 @@
 import getHTML from "./getHTML.js";
+import getResult from "./getResult.js";
 
 let array = [];
 let buttonsArray = [];
@@ -9,7 +10,6 @@ let $nQuestions = d.getElementById("nQuestions");
 let url;
 let $main = d.querySelector("main");
 let questionsRight = 0;
-let questionsWrong = 0;
 let currentQuestion = 0;
 let isAnswer = false;
 let gameIsEnd = false;
@@ -46,36 +46,7 @@ let counter = setInterval(timer, 1000);
                 
                 } else {
                     document.querySelector(".card").remove();
-                    getHTML({
-                        url:"result_trivia.html",
-                        success: (html) => {
-                        $main.innerHTML = html
-                        document.querySelector(".card-body").innerHTML = `<h5 class="card-title">Haciendo recuento...</h5><img src='tail-spin.svg' />`
-                    
-                        setTimeout(() => {
-                          document.querySelector(".card-body").innerHTML = `<h5 class="card-title recuento">Has acertado: ${questionsRight} respuestas.</h5><div class="rating">
-                    
-                          <input type="radio" name="rating" id="r1">
-                          <label for="r1"></label>
-                    
-                          <input type="radio" name="rating" id="r2">
-                          <label for="r2"></label>
-                    
-                          <input type="radio" name="rating" id="r3">
-                          <label for="r3"></label>
-                    
-                          <input type="radio" name="rating" id="r4">
-                          <label for="r4"></label>
-                    
-                          <input type="radio" name="rating" id="r5">
-                          <label for="r5"></label>
-                    
-                          </div>`;
-                        }, 3000);
-                      },
-                    
-                        error: (err) => $main.innerHTML = `<h1>${err}</h1>`
-                    });
+                    getResult($main, questionsRight);
                 }
             } 
         }
@@ -198,7 +169,7 @@ d.addEventListener("click", e => {
                 icon: 'success',
                 title: 'Correcto'
             });
-
+            questionsRight++;
         } else {
             const Toast = Swal.mixin({
                 toast: true,
@@ -219,36 +190,7 @@ d.addEventListener("click", e => {
             document.querySelector(".card").remove();
                 gameIsEnd = true;
                 
-                getHTML({
-                    url:"result_trivia.html",
-                    success: (html) => {
-                    $main.innerHTML = html
-                    document.querySelector(".card-body").innerHTML = `<h5 class="card-title">Haciendo recuento...</h5><img src='tail-spin.svg' />`
-                
-                    setTimeout(() => {
-                      document.querySelector(".card-body").innerHTML = `<h5 class="card-title recuento">Has acertado: ${questionsRight} respuestas.</h5><div class="rating">
-                
-                      <input type="radio" name="rating" id="r1">
-                      <label for="r1"></label>
-                
-                      <input type="radio" name="rating" id="r2">
-                      <label for="r2"></label>
-                
-                      <input type="radio" name="rating" id="r3">
-                      <label for="r3"></label>
-                
-                      <input type="radio" name="rating" id="r4">
-                      <label for="r4"></label>
-                
-                      <input type="radio" name="rating" id="r5">
-                      <label for="r5"></label>
-                
-                      </div>`;
-                    }, 3000);
-                  },
-                
-                    error: (err) => $main.innerHTML = `<h1>${err}</h1>`
-                });
+                getResult($main, questionsRight);
             } else {
                 nextQuestion();
             }
