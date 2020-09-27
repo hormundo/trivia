@@ -64,7 +64,7 @@ let counter = setInterval(timer, 1000);
 
 const nextQuestion = () => {
     isAnswer = false;
-debugger
+    
     let card = `<div class="card col-12"> 
                     <span class="badge badge-pill badge-primary">${++currentQuestion}/${$nQuestions.value}</span>
                     <progress id="progress-bar" value="10" max="10"></progress>

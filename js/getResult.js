@@ -27,6 +27,30 @@ export default function geResult($main, questionsRight){
           <label for="r5"></label>
     
           </div>`;
+          setTimeout(() => {
+            let percent = (questionsRight/parseInt(($nQuestions).value))*100;
+                                          
+          let intpercent = Math.round(percent);
+          
+          if (intpercent === 0) {
+            return
+          }
+          else if (intpercent <= 20) {
+            d.getElementById("r5").checked = true;
+          }
+          else if (intpercent > 20 && intpercent <= 40) {
+            d.getElementById("r4").checked = true;
+          } 
+          else if (intpercent > 40 && intpercent <= 60) {
+            d.getElementById("r3").checked = true;
+          }
+          else if (intpercent > 60 && intpercent <=80) {
+            d.getElementById("r2").checked = true;
+          }
+          else {
+            d.getElementById("r1").checked = true;
+          }
+          }, 500);
         }, 3000);
       },
     
