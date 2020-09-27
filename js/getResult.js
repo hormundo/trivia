@@ -1,5 +1,5 @@
 import getHTML from "./getHTML.js"
-
+let d = document;
 export default function geResult($main, questionsRight, nQuestions){
     
     getHTML({
