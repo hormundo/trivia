@@ -11,19 +11,19 @@ export default function geResult($main, questionsRight, nQuestions){
         setTimeout(() => {
           document.querySelector(".card-body").innerHTML = `<h5 class="card-title recuento">Has acertado: ${questionsRight} respuestas.</h5><div class="rating">
     
-          <input type="radio" name="rating" id="r1">
+          <input type="radio" name="rating" id="r1" disabled>
           <label for="r1"></label>
     
-          <input type="radio" name="rating" id="r2">
+          <input type="radio" name="rating" id="r2" disabled>
           <label for="r2"></label>
     
-          <input type="radio" name="rating" id="r3">
+          <input type="radio" name="rating" id="r3" disabled>
           <label for="r3"></label>
     
-          <input type="radio" name="rating" id="r4">
+          <input type="radio" name="rating" id="r4" disabled>
           <label for="r4"></label>
     
-          <input type="radio" name="rating" id="r5">
+          <input type="radio" name="rating" id="r5" disabled>
           <label for="r5"></label>
     
           </div>`;
