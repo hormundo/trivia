@@ -2,12 +2,14 @@ body, .container {
     height: 100vh;
 }
 .container {
-    display: flex;
+    padding-top: 1rem;
+    /*display: flex;*/
 }
 .row {
     width: 100%;
     align-self: center;
     flex: 1;
+    margin: 0;
     /*padding: 0 1rem;*/
 }
 .card {
@@ -122,8 +124,6 @@ progress[value]::-webkit-progress-value {
 .badge {
     position: relative;
     top: 33px !important;
-    width: 50%;
-    left: calc(50% - 72px);
     margin-bottom: 25px;
 }
 
