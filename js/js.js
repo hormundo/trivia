@@ -46,7 +46,7 @@ let counter = setInterval(timer, 1000);
                 
                 } else {
                     document.querySelector(".card").remove();
-                    getResult($main, questionsRight);
+                    getResult($main, questionsRight, parseInt($nQuestions.value));
                 }
             } 
         }
@@ -190,7 +190,7 @@ d.addEventListener("click", e => {
             document.querySelector(".card").remove();
                 gameIsEnd = true;
                 
-                getResult($main, questionsRight);
+                getResult($main, questionsRight, parseInt($nQuestions.value));
             } else {
                 nextQuestion();
             }

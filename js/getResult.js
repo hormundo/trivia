@@ -1,6 +1,6 @@
 import getHTML from "./getHTML.js"
 
-export default function geResult($main, questionsRight){
+export default function geResult($main, questionsRight, $nQuestions){
     
     getHTML({
         url:"result_trivia.html",
