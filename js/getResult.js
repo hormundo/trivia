@@ -1,6 +1,6 @@
 import getHTML from "./getHTML.js"
 
-export default function geResult($main, questionsRight, $nQuestions){
+export default function geResult($main, questionsRight, nQuestions){
     
     getHTML({
         url:"result_trivia.html",
@@ -28,7 +28,7 @@ export default function geResult($main, questionsRight, $nQuestions){
     
           </div>`;
           setTimeout(() => {
-            let percent = (questionsRight/parseInt(($nQuestions).value))*100;
+            let percent = (questionsRight/nQuestions)*100;
                                           
           let intpercent = Math.round(percent);
           
