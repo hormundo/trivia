@@ -9,24 +9,124 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
   </head>
 
   <body>
+    <div id="wave-container" class="css-0 eepbx3x0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,160L30,176C60,192,120,224,180,208C240,192,300,128,360,112C420,96,480,128,540,149.3C600,171,660,181,720,170.7C780,160,840,128,900,117.3C960,107,1020,117,1080,138.7C1140,160,1200,192,1260,224C1320,256,1380,288,1410,304L1440,320L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path>
+      </svg>
+    </div>
       <div class="container">
-          <main class="row">
-            <form class="col-10 m-auto">
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Número de preguntas</label>
-                <input type="number" class="form-control" id="nQuestions" value="10" placeholder="">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Seleciona categoría</label>
-                <select class="form-control" id="selectCategory">
-                    <option value="any">Any category</option>
-                </select>
-              </div>
-              <button id="startGame" class="btn btn-primary col-12 d-block m-auto" type="submit">Comenzar</button>
-            </form>
+          <main class="row flex-column">
+            <div class="sticky">
+              <h1>OpenTrivia</h1>
+              <p>Select a category to start the quiz</p>
+            </div>
+            <section class="row justify-content-center">
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-border-all"></i>
+                <span>Any</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-brain"></i>
+                <span>General Knowledge</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-book-open"></i>
+                <span>Entertainment: Books</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-video"></i>
+                <span>Entertainment: Film</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-music"></i>
+                <span>Entertainment: Music</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-theater-masks"></i>
+                <span>Entertainment: Musicals & Theatres</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-tv"></i>
+                <span>Entertainment: Television</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-gamepad"></i>
+                <span>Entertainment: Video Games</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-chess-board"></i>
+                <span>Entertainment: Board Games</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-atom"></i>
+                <span>Science & Nature</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-laptop-code"></i>
+                <span>Science: Computers</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-square-root-alt"></i>
+                <span>Science: Mathematics</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-dragon"></i>
+                <span>Mythology</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-volleyball-ball"></i>
+                <span>Sports</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-globe-europe"></i>
+                <span>Geography</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-landmark"></i>
+                <span>History</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-handshake"></i>
+                <span>Politics</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-palette"></i>
+                <span>Art</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-users"></i>
+                <span>Celebrities</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-paw"></i>
+                <span>Animals</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-car"></i>
+                <span>Vehicles</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-mask"></i>
+                <span>Entertainment: Comics</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-mobile-alt"></i>
+                <span>Science: Gadgets</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-cat"></i>
+                <span>Entertainment: Japanese Anime & Manga</span>
+              </article>
+              <article class="category col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <i class="fas fa-radiation-alt"></i>
+                <span>Entertainment: Cartoon & Animations</span>
+              </article>
+            </section>
           </main>
       </div>
 

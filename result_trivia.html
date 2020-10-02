@@ -1,8 +1,54 @@
 <div class="card col-12 text-center"> 
-  <div class="card-body">
+  <div class="card-body pl-0 pr-0">
     <h5 class="card-title"></h5>
     </div>
   </div>
 </div>
 
-<a href="index.html" class="btn btn-primary col-12" type="submit">Jugar otra vez</a>
+<div class="card col-12 mb-2 mt-0"> 
+  <div class="card-body pl-0 pr-0">
+    <div class="row">
+      <h6 class="card-title col-6 mb-0">Total Questions</h6>
+      <h6 class="card-title col-6 totalQuestions text-right mb-0"></h6>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="card col-12 mb-2 mt-0"> 
+  <div class="card-body pl-0 pr-0">
+    <div class="row">
+      <h6 class="card-title col-6 mb-0">Score</h6>
+      <h6 class="card-title col-6 score text-right mb-0"></h6>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="card col-12 mb-5 mt-1"> 
+  <div class="card-body pl-0 pr-0">
+    <div class="row">
+      <h6 class="card-title col-6 mb-0">Correct answers</h6>
+      <h6 class="card-title col-6 correctAnswers text-right mb-0"></h6>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="resumes d-flex flex-column">
+
+</div>
+
+<template id="card-template">
+  <div class="resume card col-12 mb-5 mt-1"> 
+    <div class="card-body pl-0 pr-0">
+      <h6 class="card-title category"></h6>
+      <h6 class="card-title difficulty"></h6>
+      <p class="card-text question"></p>
+      <h5 class="card-title correctAnswer"></h5>
+      <p class="card-text myAnswer"></p>
+      </div>
+    </div>
+</template> 
+
+<a href="index.html" class="btn btn-primary col-12 mb-5" type="submit">Retry</a>

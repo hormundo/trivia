@@ -1,0 +1,375 @@
+html {
+    height: 100%;
+    overflow-x: hidden;
+    height: auto;
+ }
+ 
+ body {
+    min-height: 100%;
+    height: auto;
+ }
+.container {
+    padding-top: 1rem;
+    /*display: flex;*/
+}
+.row {
+    width: 100%;
+    align-self: center;
+    flex: 1;
+    margin: 0 !important;
+    /*padding: 0 1rem;*/
+}
+.card {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+.btn {
+    align-self: center;
+}
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    left: -.7rem;
+}
+@-webkit-keyframes pulse {
+    50% {
+        color: #5e5e5e;
+        text-shadow: 0 0 15px #777777;
+    }
+
+}
+@keyframes pulse {
+    50% {
+        color: #5e5e5e;
+        text-shadow: 0 0 15px #777777;
+    }
+}
+.rating label {
+    height: 110px;
+    width: 20%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+.rating label:nth-of-type(5):after {
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+}
+.rating label:nth-of-type(4):after {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+.rating label:nth-of-type(3):after {
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
+}
+.rating label:nth-of-type(2):after {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+.rating label:nth-of-type(1):after {
+    -webkit-animation-delay: 0.05s;
+    animation-delay: 0.05s;
+}
+.rating label:after {
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    content: "☆";
+    color: #444;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 80px;
+    -webkit-animation: 1s pulse ease;
+    animation: 1s pulse ease;
+}
+.rating label:hover:after {
+    color: #5e5e5e;
+    text-shadow: 0 0 15px #5e5e5e;
+}
+.rating input {
+    display: none;
+}
+.rating input:checked + label:after,
+.rating input:checked ~ label:after {
+    content: "★";
+    color: #F9BF3B;
+    text-shadow: 0 0 20px #F9BF3B;
+}
+
+.resume {
+    position: relative;
+    border-radius: .5rem;
+    &:before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f00c";
+        font-weight: 900;
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        font-size: 2rem;
+    }
+    &.right {
+        border: 2px solid #64834d;
+
+        &:before {
+            content: "\f00c";
+            color: #64834d;
+        }
+    }
+
+    &.wrong {
+        border: 2px solid #d95252;
+        &:before {
+            content: "\f00d";
+            color: #d95252;
+        }
+    }
+}
+
+#progress-bar {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: aliceblue;
+}
+
+progress[value]::-webkit-progress-value {
+    background-image:
+    -webkit-linear-gradient(-45deg, 
+        transparent 33%, rgba(0, 0, 0, .1) 33%, 
+        rgba(0,0, 0, .1) 66%, transparent 66%),
+    -webkit-linear-gradient(top, 
+        rgba(255, 255, 255, .25), 
+        rgba(0, 0, 0, .25)),
+    -webkit-linear-gradient(left,  #f44, #09c);
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+.card-body,
+.badge {
+    z-index: 1 !important;
+}
+
+.badge {
+    position: relative;
+    top: 33px !important;
+    margin-bottom: 25px;
+}
+
+.card-title.recuento {
+    margin-bottom: 0 !important;
+}
+
+.card .card-body .row.buttons .btn {
+    margin: 1rem 0 0 !important;
+}
+
+.row.buttons {
+    margin-left: 0;
+}
+
+.container {
+    position: relative;
+    .row {
+        .sticky {
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            background: #0099ff;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            h1 {
+                color: white;
+            }
+
+            p {
+                color: white;
+            }
+              
+        }
+        .card-body {
+            .row {
+                padding-top: 0 !important;
+                margin: 0 !important;
+            }
+        }
+        .row {
+            margin: 3rem 0 0 !important;
+            padding-top: 3rem;
+            .category {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #3c3b3b;
+                border-radius: 7px;
+                color: #ffffff;
+                font-size: 120%;
+                cursor: pointer;
+                text-align: center;
+                line-height: 1rem;
+                padding: 2rem 1rem;
+                transition: transform 0.2s;
+                margin: 1rem;
+                line-height: 2rem;
+                &:hover {
+                    transform: scale(1.1);
+                }
+        
+                i {
+                    margin-bottom: 1rem;
+                    font-size: 2rem;
+                }
+            }
+            &.buttons {
+                margin: 0 !important;
+                padding-top: 0 !important;
+            }
+ 
+        }
+
+    }
+}
+
+#wave-container {
+    position: fixed;
+    width: 100%;
+    svg {
+        width: 100%;
+        background: white;
+        height: 100%;
+    }
+}
+
+/*selector numero de preguntas*/
+.myradio {
+    display: inline-block;
+    border-radius: 999px;
+    margin: 5px;
+  }
+  .myradio__input {
+    opacity: 0;
+    position: absolute;
+  }
+  .myradio__label {
+    border-radius: 9999px;
+    padding: 3px 15px 3px 40px;
+    cursor: pointer;
+    position: relative;
+    transition: all .5s;
+  }
+  .myradio__label::before, .myradio__label::after {
+    content: "";
+    border-radius: 9999px;
+    width: 16px;
+    height: 16px;
+    margin: 3px 0;
+    position: absolute;
+    z-index: 1;
+  }
+  .myradio__label::before {
+    background-color: #DCDCDC;
+    border: 2px solid #DCDCDC;
+    top: 4px;
+    left: 10px;
+    transition: all .5s;
+  }
+  .myradio__label::after {
+    background-color: #ffffff;
+    top: 4px;
+    left: 10px;
+    transition: all .15s;
+    transition-timing-function: ease-out;
+  }
+  .myradio__label:hover {
+    background-color: rgba(114, 86, 248, 0.1);
+  }
+  .myradio__label:hover::before {
+    border: 2px solid #7256F8;
+  }
+  .myradio__input:checked ~ .myradio__label::before {
+    background-color: #7256F8;
+    border: 2px solid #7256F8;
+  }
+  .myradio__input:checked ~ .myradio__label::after {
+    width: 8px;
+    height: 8px;
+    top: 8px;
+    left: 14px;
+  }
+
+  :root {
+	--bg: #e3e4e8;
+	--fg: #17181c;
+	--bs1: #ffffff;
+	--bs2: #f3f4f8;
+	--bs3: #cccdd1;
+	--bs4: #c1c2c5;
+	--transDur: 0.1s;
+}
+
+form, label {
+	width: 100%;
+}
+form {
+	margin: auto;
+	padding: 0 1.5em;
+}
+label {
+	display: block;
+	margin: 0 0.2em;
+	text-align: center;
+	-webkit-tap-highlight-color: transparent;
+}
+label:first-child input {
+	border-radius: 0.5em 0 0 0.5em;
+}
+label:last-child input {
+	border-radius: 0 0.5em 0.5em 0;
+}
+input {
+	border-radius: 0;
+	box-shadow:
+		0.15em 0.15em 1em var(--bs2) inset,
+		-0.15em -0.15em 1em var(--bs3) inset,
+		0.15em 0.15em 0.45em var(--bs4), 
+		-0.15em -0.15em 0.45em var(--bs1);
+	cursor: pointer;
+	display: block;
+	margin-bottom: 0.5em;
+	width: 100%;
+	height: 1em;
+	transition: all var(--transDur) ease-in-out;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+input:checked {
+	box-shadow:
+		-0.15em -0.15em 0.45em var(--bs2) inset,
+		0.15em 0.15em 0.45em var(--bs4) inset,
+		0 0 0 var(--bs4), 
+		0 0 0 var(--bs1);
+}
+input:checked + span {
+	opacity: 1;
+}
+input:focus {
+	outline: transparent;
+}
+input + span {
+	opacity: 0.65;
+	transition: opacity var(--transDur) ease-in-out;
+}
