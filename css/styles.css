@@ -200,6 +200,7 @@ progress[value]::-webkit-progress-value {
   transition: transform 0.2s;
   margin: 1rem;
   line-height: 2rem;
+  max-height: 175px;
 }
 .container .row .row .category:hover {
   transform: scale(1.1);

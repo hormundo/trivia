@@ -5,10 +5,10 @@ export default function geResult($main, questionsRight, nQuestions, array, myAnw
         url:"result_trivia.html",
         success: (html) => {
         $main.innerHTML = html;
-        document.querySelector(".card-body").innerHTML = `<h5 class="card-title">Haciendo recuento...</h5><img src='tail-spin.svg' />`;
+        document.querySelector(".card-body").innerHTML = `<h5 class="card-title">Please wait results...</h5><img src='tail-spin.svg' />`;
     
         setTimeout(() => {
-          document.querySelector(".card-body").innerHTML = `<h5 class="card-title recuento">Has acertado: ${questionsRight} respuestas.</h5>
+          document.querySelector(".card-body").innerHTML = `<h5 class="card-title recuento">RESULTS:</h5>
                                                               <div class="rating">
                                                                 <input type="radio" name="rating" id="r1" disabled>
                                                                 <label for="r1"></label>
@@ -52,7 +52,6 @@ export default function geResult($main, questionsRight, nQuestions, array, myAnw
               let $clone = document.importNode($template, true);
               $fragment.appendChild($clone);
 
-              debugger
               $template.querySelector(".resume").classList.remove("right")
               $template.querySelector(".resume").classList.remove("wrong");
 
@@ -77,9 +76,7 @@ export default function geResult($main, questionsRight, nQuestions, array, myAnw
             }
             else {
               document.getElementById("r1").checked = true;
-            }
-
-            
+            } 
           }, 500);
         }, 3000);
       },
