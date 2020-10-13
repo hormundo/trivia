@@ -92,7 +92,6 @@ const nextQuestion = () => {
 }
           
 document.addEventListener("DOMContentLoaded", async e => {
-    token = localStorage.getItem('token');
     
     try {
         let res = await fetch("https://opentdb.com/api_category.php");
@@ -196,6 +195,8 @@ document.addEventListener("click", e => {
     }
 
     if(e.target.matches("#startGame")) {
+        token = localStorage.getItem('token');
+
         if(!categoryId && !diffculty) {
             if(!nQuestions) nQuestions = 10;
             url = `https://opentdb.com/api.php?amount=${nQuestions}&token=${token}`;
